@@ -1,8 +1,14 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponse
-
+from .forms import PreditctForm
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    if request.method == 'POST':
+        form = PreditctForm(request.POST)
+        if form.is_valid():
+            print(form)
+            context = {'form': form}
+            return render(request, 'predict/index.html', context)
+    else:
+        form = PreditctForm()
+        context = {'form': form}
+    return render(request, 'predict/index.html', context)
