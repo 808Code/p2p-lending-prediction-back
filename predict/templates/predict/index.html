@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Predict</title>
+    <style>table, th, td {
+  border: 1px solid;
+}
+.box {
+  float: left;
+  height: 20px;
+  width: 20px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  clear: both;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+</style>
 </head>
 <body>
-Fill Up The Form.
+ <table>
+        <form action="data" method="post">
+            {% for field in form %}
+             {% csrf_token %}
+            <tr>
+                <td>{{field.label_tag}}</td>
+                <td>{{field}}</td>
+            </tr>
+            {% endfor %}
+
+            <tr> <td>Submit:</td><td><input type="submit" value="OK"></td></tr>
+</form>
+</table>
+<br>
+    <div><div class='box red'></div></div>
+    <br>
+    <div><div class='box green'></div></div>
+
 </body>
 </html>
