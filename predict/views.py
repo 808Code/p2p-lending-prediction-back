@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .forms import PreditctForm
-from loanprediction.loanprediction.settings import ML_MODEL
+import pickle
+
+filename = 'LendingClubPredictingModel.sav'
+ML_MODEL = pickle.load(open(filename, 'rb'))
 
 def index(request):
     print(ML_MODEL)
