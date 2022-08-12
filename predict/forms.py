@@ -33,6 +33,7 @@ class PreditctForm(forms.Form):
     home_ownership = forms.IntegerField(widget=forms.Select(choices=HOME_OWNERSHIP))
     annual_inc = forms.FloatField(min_value=0)
     verification_status = forms.IntegerField(widget=forms.Select(choices=VERIFICATION_CHOICES))
+    loan_status=forms.IntegerField()
     purpose = forms.IntegerField()
     dti = forms.FloatField(min_value=0)
     # drop

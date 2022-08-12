@@ -11,13 +11,18 @@ def check(request):
         d=request.POST.dict()
         del d['csrfmiddlewaretoken']
         test_values=list(d.values())
-        form = PreditctForm(request.POST)
-        print(form)
-        context = {'form': form}
+        prediction=ML_MODEL.predict([test_values])
+        print(prediction)
+        form = PreditctForm(d)
+        context['form'] = form
+        boolean_prediction=1 if prediction==1 else 2
+        context['boolean_prediction']=boolean_prediction
     return render(request, 'predict/index.html', context)
 
 
 def index(request):
+    context={}
     form = PreditctForm(getRandomRecord())
-    context = {'form': form}
+    context['boolean_prediction'] = 3
+    context['form'] = form
     return render(request, 'predict/index.html', context)
