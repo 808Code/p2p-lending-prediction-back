@@ -26,23 +26,154 @@
 </style>
 </head>
 <body>
+{{form.home_ownership.value}}
  <table>
-        <form action="data" method="post">
+        <form action="submit" method="post">
+            {% csrf_token %}
             {% for field in form %}
-             {% csrf_token %}
+            {% if field.name == 'emp_title' or field.name == 'address' or field.name == 'purpose'%}
+
+            {% elif field.name == 'verification_status' %}
+
+            <tr>
+                <td><label for="id_verification_status">Verification status:</label></td>
+                <td><select name="verification_status" id="id_verification_status">
+  <option value="0" {% if form.verification_status.value == 0 %} selected {% endif %}>Not Verified</option>
+
+  <option value="1" {% if form.verification_status.value == 1 %} selected {% endif %}>Verified</option>
+
+  <option value="2" {% if form.verification_status.value == 2 %} selected {% endif %}>Source Verified</option>
+
+</select></td>
+            </tr>
+
+             {% elif field.name == 'home_ownership' %}
+                     <tr>
+                <td><label for="id_home_ownership">Home ownership:</label></td>
+                <td><select name="home_ownership" id="id_home_ownership">
+  <option value="0" {% if form.home_ownership.value == 0 %} selected {% endif %}>RENT</option>
+
+  <option value="1" {% if form.home_ownership.value == 1 %} selected {% endif %}>OWN</option>
+
+  <option value="2" {% if form.home_ownership.value == 3 %} selected {% endif %}>MORTGAGE</option>
+
+</select></td>
+            </tr>
+
+
+             {% elif field.name == 'initial_list_status' %}
+                 <tr>
+                <td><label for="id_initial_list_status">Initial list status:</label></td>
+                <td><select name="initial_list_status" id="id_initial_list_status">
+  <option value="1" {% if form.initial_list_status.value == 1 %} selected {% endif %}>Whole</option>
+
+  <option value="0" {% if form.initial_list_status.value == 0 %} selected {% endif %}>Fractional</option>
+
+</select></td>
+            </tr>
+
+            {% elif field.name == 'application_type' %}
+
+            <tr>
+                <td><label for="id_application_type">Application type:</label></td>
+                <td><select name="application_type" id="id_application_type">
+  <option value="0" {% if form.application_type.value == 0 %} selected {% endif %}>JOINT</option>
+
+  <option value="1" {% if form.application_type.value == 1 %} selected {% endif %}>INDIVIDUAL</option>
+
+</select></td>
+            </tr>
+
+            {% elif field.name == 'issue_d_month' %}
+
+                <tr>
+                <td><label for="id_issue_d_month">Issue d month:</label></td>
+                <td><select name="issue_d_month" id="id_issue_d_month">
+
+  <option value="1"  {% if form.issue_d_month.value == 1 %} selected {% endif %}>Jan</option>
+
+  <option value="2"  {% if form.issue_d_month.value == 2 %} selected {% endif %}>Feb</option>
+
+  <option value="3"  {% if form.issue_d_month.value == 3 %} selected {% endif %}>Mar</option>
+
+  <option value="4"  {% if form.issue_d_month.value == 4 %} selected {% endif %}>Apr</option>
+
+  <option value="5"  {% if form.issue_d_month.value == 5 %} selected {% endif %}>May</option>
+
+  <option value="6" {% if form.issue_d_month.value == 6 %} selected {% endif %}>Jun</option>
+
+  <option value="7"  {% if form.issue_d_month.value == 7 %} selected {% endif %}>Jul</option>
+
+  <option value="8"  {% if form.issue_d_month.value == 8 %} selected {% endif %}>Aug</option>
+
+  <option value="9"  {% if form.issue_d_month.value == 9 %} selected {% endif %}>Sep</option>
+
+  <option value="10" {% if form.issue_d_month.value == 10 %} selected {% endif %}>Oct</option>
+
+  <option value="11" {% if form.issue_d_month.value == 11 %} selected {% endif %}>Nov</option>
+
+  <option value="12" {% if form.issue_d_month.value == 12 %} selected {% endif %}>Dec</option>
+
+</select></td>
+            </tr>
+
+
+                        {% elif field.name == 'earliest_cr_line_month' %}
+
+                <tr>
+                <td><label for="id_earliest_cr_line_month">{{field.label_tag}}</label></td>
+                <td><select name="earliest_cr_line_month" id="id_earliest_cr_line_month">
+
+  <option value="1"  {% if form.earliest_cr_line_month.value == 1 %} selected {% endif %}>Jan</option>
+
+  <option value="2"  {% if form.earliest_cr_line_month.value == 2 %} selected {% endif %}>Feb</option>
+
+  <option value="3"  {% if form.earliest_cr_line_month.value == 3 %} selected {% endif %}>Mar</option>
+
+  <option value="4"  {% if form.earliest_cr_line_month.value == 4 %} selected {% endif %}>Apr</option>
+
+  <option value="5"  {% if form.earliest_cr_line_month.value == 5 %} selected {% endif %}>May</option>
+
+  <option value="6" {% if form.earliest_cr_line_month.value == 6 %} selected {% endif %}>Jun</option>
+
+  <option value="7"  {% if form.earliest_cr_line_month.value == 7 %} selected {% endif %}>Jul</option>
+
+  <option value="8"  {% if form.earliest_cr_line_month.value == 8 %} selected {% endif %}>Aug</option>
+
+  <option value="9"  {% if form.earliest_cr_line_month.value == 9 %} selected {% endif %}>Sep</option>
+
+  <option value="10" {% if form.earliest_cr_line_month.value == 10 %} selected {% endif %}>Oct</option>
+
+  <option value="11" {% if form.earliest_cr_line_month.value == 11 %} selected {% endif %}>Nov</option>
+
+  <option value="12" {% if form.earliest_cr_line_month.value == 12 %} selected {% endif %}>Dec</option>
+
+</select></td>
+            </tr>
+
+
+            {% else %}
             <tr>
                 <td>{{field.label_tag}}</td>
                 <td>{{field}}</td>
             </tr>
+             {% endif %}
             {% endfor %}
 
             <tr> <td>Submit:</td><td><input type="submit" value="OK"></td></tr>
+
 </form>
+     <form action="data" method="post">
+         {% csrf_token %}
+        <tr> <td>NewData</td><td><input type="submit" value="OK"></td></tr>
+     </form>
 </table>
+
 <br>
     <div><div class='box red'></div></div>
     <br>
     <div><div class='box green'></div></div>
 
+ <p>{{tested_for}}</p>
 </body>
 </html>
