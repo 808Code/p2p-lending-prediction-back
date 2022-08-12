@@ -12,8 +12,7 @@ def check(request):
         del d['csrfmiddlewaretoken']
         test_values=list(d.values())
         prediction=ML_MODEL.predict([test_values])
-        print(prediction)
-        form = PreditctForm(d)
+        form = PreditctForm(initial=d)
         context['form'] = form
         boolean_prediction=1 if prediction==1 else 2
         context['boolean_prediction']=boolean_prediction
