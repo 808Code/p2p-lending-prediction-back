@@ -26,7 +26,12 @@
 </style>
 </head>
 <body>
+{% load tag_library %}
 
+
+{% if  form.home_ownership.value == "3"  %}
+<h1>XXXXXXXX</h1>
+{% endif %}
  <table>
         <form action="submit" method="post">
             {% csrf_token %}
@@ -51,13 +56,13 @@
 
              {% elif field.name == 'home_ownership' %}
                      <tr>
-                <td><label for="id_home_ownership">Home ownership:</label></td>
+                <td><label for="id_home_ownership">Home ownership:{{form.home_ownership.value}}</label></td>
                 <td><select name="home_ownership" id="id_home_ownership">
-  <option value="0" {% if form.home_ownership.value == 0 %} selected {% endif %}>RENT</option>
+  <option value="0" {% if form.home_ownership.value|to_int == 0 %} selected {% endif %}>RENT</option>
 
-  <option value="1" {% if form.home_ownership.value == 1 %} selected {% endif %}>OWN</option>
+  <option value="1" {% if form.home_ownership.value|to_int == 1 %} selected {% endif %}>OWN</option>
 
-  <option value="2" {% if form.home_ownership.value == 3 %} selected {% endif %}>MORTGAGE</option>
+  <option value="3" {% if form.home_ownership.value|to_int == 3 %} selected {% endif %}>MORTGAGE</option>
 
 </select></td>
             </tr>
