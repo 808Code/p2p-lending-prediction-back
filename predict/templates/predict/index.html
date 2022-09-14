@@ -26,7 +26,10 @@
 </style>
 </head>
 <body>
-
+{% load tag_library %}
+{% if  form.home_ownership.value|to_int  == "3"  %}
+<h1>XXXXXXXX</h1>
+{% endif %}
  <table>
         <form action="submit" method="post">
             {% csrf_token %}
@@ -40,11 +43,11 @@
             <tr>
                 <td><label for="id_verification_status">Verification status:</label></td>
                 <td><select name="verification_status" id="id_verification_status">
-  <option value="0" {% if form.verification_status.value == 0 %} selected {% endif %}>Not Verified</option>
+  <option value="0" {% if form.verification_status.value|to_int  == 0 %} selected {% endif %}>Not Verified</option>
 
-  <option value="1" {% if form.verification_status.value == 1 %} selected {% endif %}>Verified</option>
+  <option value="1" {% if form.verification_status.value|to_int  == 1 %} selected {% endif %}>Verified</option>
 
-  <option value="2" {% if form.verification_status.value == 2 %} selected {% endif %}>Source Verified</option>
+  <option value="2" {% if form.verification_status.value|to_int  == 2 %} selected {% endif %}>Source Verified</option>
 
 </select></td>
             </tr>
@@ -53,11 +56,11 @@
                      <tr>
                 <td><label for="id_home_ownership">Home ownership:</label></td>
                 <td><select name="home_ownership" id="id_home_ownership">
-  <option value="0" {% if form.home_ownership.value == 0 %} selected {% endif %}>RENT</option>
+  <option value="0" {% if form.home_ownership.value|to_int  == 0 %} selected {% endif %}>RENT</option>
 
-  <option value="1" {% if form.home_ownership.value == 1 %} selected {% endif %}>OWN</option>
+  <option value="1" {% if form.home_ownership.value|to_int  == 1 %} selected {% endif %}>OWN</option>
 
-  <option value="2" {% if form.home_ownership.value == 3 %} selected {% endif %}>MORTGAGE</option>
+  <option value="3" {% if form.home_ownership.value|to_int  == 3 %} selected {% endif %}>MORTGAGE</option>
 
 </select></td>
             </tr>
@@ -67,9 +70,9 @@
                  <tr>
                 <td><label for="id_initial_list_status">Initial list status:</label></td>
                 <td><select name="initial_list_status" id="id_initial_list_status">
-  <option value="1" {% if form.initial_list_status.value == 1 %} selected {% endif %}>Whole</option>
+  <option value="1" {% if form.initial_list_status.value|to_int  == 1 %} selected {% endif %}>Whole</option>
 
-  <option value="0" {% if form.initial_list_status.value == 0 %} selected {% endif %}>Fractional</option>
+  <option value="0" {% if form.initial_list_status.value|to_int  == 0 %} selected {% endif %}>Fractional</option>
 
 </select></td>
             </tr>
@@ -79,9 +82,9 @@
             <tr>
                 <td><label for="id_application_type">Application type:</label></td>
                 <td><select name="application_type" id="id_application_type">
-  <option value="0" {% if form.application_type.value == 0 %} selected {% endif %}>JOINT</option>
+  <option value="0" {% if form.application_type.value|to_int  == 0 %} selected {% endif %}>JOINT</option>
 
-  <option value="1" {% if form.application_type.value == 1 %} selected {% endif %}>INDIVIDUAL</option>
+  <option value="1" {% if form.application_type.value|to_int  == 1 %} selected {% endif %}>INDIVIDUAL</option>
 
 </select></td>
             </tr>
@@ -92,29 +95,29 @@
                 <td><label for="id_issue_d_month">Issue d month:</label></td>
                 <td><select name="issue_d_month" id="id_issue_d_month">
 
-  <option value="1"  {% if form.issue_d_month.value == 1 %} selected {% endif %}>Jan</option>
+  <option value="1"  {% if form.issue_d_month.value|to_int  == 1 %} selected {% endif %}>Jan</option>
 
-  <option value="2"  {% if form.issue_d_month.value == 2 %} selected {% endif %}>Feb</option>
+  <option value="2"  {% if form.issue_d_month.value|to_int  == 2 %} selected {% endif %}>Feb</option>
 
-  <option value="3"  {% if form.issue_d_month.value == 3 %} selected {% endif %}>Mar</option>
+  <option value="3"  {% if form.issue_d_month.value|to_int  == 3 %} selected {% endif %}>Mar</option>
 
-  <option value="4"  {% if form.issue_d_month.value == 4 %} selected {% endif %}>Apr</option>
+  <option value="4"  {% if form.issue_d_month.value|to_int  == 4 %} selected {% endif %}>Apr</option>
 
-  <option value="5"  {% if form.issue_d_month.value == 5 %} selected {% endif %}>May</option>
+  <option value="5"  {% if form.issue_d_month.value|to_int  == 5 %} selected {% endif %}>May</option>
 
-  <option value="6" {% if form.issue_d_month.value == 6 %} selected {% endif %}>Jun</option>
+  <option value="6" {% if form.issue_d_month.value|to_int  == 6 %} selected {% endif %}>Jun</option>
 
-  <option value="7"  {% if form.issue_d_month.value == 7 %} selected {% endif %}>Jul</option>
+  <option value="7"  {% if form.issue_d_month.value|to_int  == 7 %} selected {% endif %}>Jul</option>
 
-  <option value="8"  {% if form.issue_d_month.value == 8 %} selected {% endif %}>Aug</option>
+  <option value="8"  {% if form.issue_d_month.value|to_int  == 8 %} selected {% endif %}>Aug</option>
 
-  <option value="9"  {% if form.issue_d_month.value == 9 %} selected {% endif %}>Sep</option>
+  <option value="9"  {% if form.issue_d_month.value|to_int  == 9 %} selected {% endif %}>Sep</option>
 
-  <option value="10" {% if form.issue_d_month.value == 10 %} selected {% endif %}>Oct</option>
+  <option value="10" {% if form.issue_d_month.value|to_int  == 10 %} selected {% endif %}>Oct</option>
 
-  <option value="11" {% if form.issue_d_month.value == 11 %} selected {% endif %}>Nov</option>
+  <option value="11" {% if form.issue_d_month.value|to_int  == 11 %} selected {% endif %}>Nov</option>
 
-  <option value="12" {% if form.issue_d_month.value == 12 %} selected {% endif %}>Dec</option>
+  <option value="12" {% if form.issue_d_month.value|to_int  == 12 %} selected {% endif %}>Dec</option>
 
 </select></td>
             </tr>
@@ -126,29 +129,29 @@
                 <td><label for="id_earliest_cr_line_month">{{field.label_tag}}</label></td>
                 <td><select name="earliest_cr_line_month" id="id_earliest_cr_line_month">
 
-  <option value="1"  {% if field.value == 1 %} selected {% endif %}>Jan</option>
+  <option value="1"  {% if field.value|to_int  == 1 %} selected {% endif %}>Jan</option>
 
-  <option value="2"  {% if field.value == 2 %} selected {% endif %}>Feb</option>
+  <option value="2"  {% if field.value|to_int  == 2 %} selected {% endif %}>Feb</option>
 
-  <option value="3"  {% if field.value == 3 %} selected {% endif %}>Mar</option>
+  <option value="3"  {% if field.value|to_int  == 3 %} selected {% endif %}>Mar</option>
 
-  <option value="4"  {% if field.value == 4 %} selected {% endif %}>Apr</option>
+  <option value="4"  {% if field.value|to_int  == 4 %} selected {% endif %}>Apr</option>
 
-  <option value="5"  {% if field.value == 5 %} selected {% endif %}>May</option>
+  <option value="5"  {% if field.value|to_int  == 5 %} selected {% endif %}>May</option>
 
-  <option value="6" {% if field.value == 6 %} selected {% endif %}>Jun</option>
+  <option value="6" {% if field.value|to_int  == 6 %} selected {% endif %}>Jun</option>
 
-  <option value="7"  {% if field.value == 7 %} selected {% endif %}>Jul</option>
+  <option value="7"  {% if field.value|to_int  == 7 %} selected {% endif %}>Jul</option>
 
-  <option value="8"  {% if field.value == 8 %} selected {% endif %}>Aug</option>
+  <option value="8"  {% if field.value|to_int  == 8 %} selected {% endif %}>Aug</option>
 
-  <option value="9"  {% if field.value == 9 %} selected {% endif %}>Sep</option>
+  <option value="9"  {% if field.value|to_int  == 9 %} selected {% endif %}>Sep</option>
 
-  <option value="10" {% if field.value == 10 %} selected {% endif %}>Oct</option>
+  <option value="10" {% if field.value|to_int  == 10 %} selected {% endif %}>Oct</option>
 
-  <option value="11" {% if field.value == 11 %} selected {% endif %}>Nov</option>
+  <option value="11" {% if field.value|to_int  == 11 %} selected {% endif %}>Nov</option>
 
-  <option value="12" {% if field.value == 12 %} selected {% endif %}>Dec</option>
+  <option value="12" {% if field.value|to_int  == 12 %} selected {% endif %}>Dec</option>
 
 </select></td>
             </tr>

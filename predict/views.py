@@ -13,6 +13,10 @@ def check(request):
         test_values=list(d.values())
         prediction=ML_MODEL.predict([test_values])
         form = PreditctForm(initial=d)
+        # print(d['home_ownership'])
+        # form.home_ownership=int(d['home_ownership'])
+        # # form.home_ownership ='home_ownership'
+        # print(form.home_ownership)
         context['form'] = form
         boolean_prediction=1 if prediction==1 else 2
         context['boolean_prediction']=boolean_prediction
