@@ -27,9 +27,6 @@
 </head>
 <body>
 {% load tag_library %}
-{% if  form.home_ownership.value|to_int  == "3"  %}
-<h1>XXXXXXXX</h1>
-{% endif %}
  <table>
         <form action="submit" method="post">
             {% csrf_token %}
