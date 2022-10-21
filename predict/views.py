@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import PreditctForm
 import pickle
 from .service import getRandomRecord
-filename = 'LendingClubPredictingModel.sav'
+filename = 'LendingClubModel.sav'
 ML_MODEL = pickle.load(open(filename, 'rb'))
 
 def check(request):
