@@ -3,7 +3,7 @@ from .forms import PreditctForm
 import pickle
 from .service import getRandomRecord
 
-filename = 'LendingClubModel.sav'
+filename = 'finalized_model.sav'
 ML_MODEL = pickle.load(open(filename, 'rb'))
 
 def check(request):
