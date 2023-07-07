@@ -185,6 +185,7 @@ display: none;
     </style>
   </head>
   <body>
+  Original : {{original_class}}
   {% load tag_library %}
     <div class="testbox">
 
@@ -199,9 +200,9 @@ display: none;
                 </div>
                 <div class="float-child">
 
-                        {%if boolean_prediction == 2 %}
+                        {%if boolean_prediction == 1 %}
                         <div><div class='box red'></div></div>
-                        {% elif  boolean_prediction == 1 %}
+                        {% elif  boolean_prediction == 0 %}
                          <div><div class='box green'></div></div>
                         {% else %}
                         <div><div class='box pink'></div></div>
@@ -211,137 +212,22 @@ display: none;
 
 
             {% csrf_token %}
-            {% for field in form %}
-            {% if field.name == 'emp_title' or field.name == 'address' or field.name == 'purpose'%}
-                {{ field.as_hidden }}
-            {% elif field.name == 'loan_status' %}
-
-            {% elif field.name == 'verification_status' %}
-
-            
-                <label for="id_verification_status">Verification status:</label>
-                <select name="verification_status" id="id_verification_status">
-  <option value="0" {% if form.verification_status.value|to_int  == 0 %} selected {% endif %}>Not Verified</option>
-
-  <option value="1" {% if form.verification_status.value|to_int  == 1 %} selected {% endif %}>Verified</option>
-
-  <option value="2" {% if form.verification_status.value|to_int  == 2 %} selected {% endif %}>Source Verified</option>
-
-</select>
-            
-
-             {% elif field.name == 'home_ownership' %}
-                     
-                <label for="id_home_ownership">Home ownership:</label>
-                <select name="home_ownership" id="id_home_ownership">
-  <option value="0" {% if form.home_ownership.value|to_int  == 0 %} selected {% endif %}>RENT</option>
-
-  <option value="1" {% if form.home_ownership.value|to_int  == 1 %} selected {% endif %}>OWN</option>
-
-  <option value="3" {% if form.home_ownership.value|to_int  == 3 %} selected {% endif %}>MORTGAGE</option>
-
-</select>
-            
+<!--            {% for field in form %}-->
+<!--                <label>{{ field.label }}</label>-->
+<!--                {{ field }}-->
+<!--            {% endfor %}-->
 
 
-             {% elif field.name == 'initial_list_status' %}
-                 
-                <label for="id_initial_list_status">Initial list status:</label>
-                <select name="initial_list_status" id="id_initial_list_status">
-  <option value="1" {% if form.initial_list_status.value|to_int  == 1 %} selected {% endif %}>Whole</option>
+                {% for field in form %}
 
-  <option value="0" {% if form.initial_list_status.value|to_int  == 0 %} selected {% endif %}>Fractional</option>
+                    {% if field.name != 'loan_status' %}
+                     <label>{{ field.label }}</label>
+                     {{ field }}
+                    {% else %}
+                     <div style="display: none;">{{ field }}</div>
+                    {% endif %}
+                {% endfor %}
 
-</select>
-            
-
-            {% elif field.name == 'application_type' %}
-
-            
-                <label for="id_application_type">Application type:</label>
-                <select name="application_type" id="id_application_type">
-  <option value="0" {% if form.application_type.value|to_int  == 0 %} selected {% endif %}>JOINT</option>
-
-  <option value="1" {% if form.application_type.value|to_int  == 1 %} selected {% endif %}>INDIVIDUAL</option>
-
-</select>
-            
-
-            {% elif field.name == 'issue_d_month' %}
-
-                
-                <label for="id_issue_d_month">Issue d month:</label>
-                <select name="issue_d_month" id="id_issue_d_month">
-
-  <option value="1"  {% if form.issue_d_month.value|to_int  == 1 %} selected {% endif %}>Jan</option>
-
-  <option value="2"  {% if form.issue_d_month.value|to_int  == 2 %} selected {% endif %}>Feb</option>
-
-  <option value="3"  {% if form.issue_d_month.value|to_int  == 3 %} selected {% endif %}>Mar</option>
-
-  <option value="4"  {% if form.issue_d_month.value|to_int  == 4 %} selected {% endif %}>Apr</option>
-
-  <option value="5"  {% if form.issue_d_month.value|to_int  == 5 %} selected {% endif %}>May</option>
-
-  <option value="6" {% if form.issue_d_month.value|to_int  == 6 %} selected {% endif %}>Jun</option>
-
-  <option value="7"  {% if form.issue_d_month.value|to_int  == 7 %} selected {% endif %}>Jul</option>
-
-  <option value="8"  {% if form.issue_d_month.value|to_int  == 8 %} selected {% endif %}>Aug</option>
-
-  <option value="9"  {% if form.issue_d_month.value|to_int  == 9 %} selected {% endif %}>Sep</option>
-
-  <option value="10" {% if form.issue_d_month.value|to_int  == 10 %} selected {% endif %}>Oct</option>
-
-  <option value="11" {% if form.issue_d_month.value|to_int  == 11 %} selected {% endif %}>Nov</option>
-
-  <option value="12" {% if form.issue_d_month.value|to_int  == 12 %} selected {% endif %}>Dec</option>
-
-</select>
-            
-
-
-                        {% elif field.name == 'earliest_cr_line_month' %}
-
-                
-                <label for="id_earliest_cr_line_month">{{field.label_tag}}</label>
-                <select name="earliest_cr_line_month" id="id_earliest_cr_line_month">
-
-  <option value="1"  {% if field.value|to_int  == 1 %} selected {% endif %}>Jan</option>
-
-  <option value="2"  {% if field.value|to_int  == 2 %} selected {% endif %}>Feb</option>
-
-  <option value="3"  {% if field.value|to_int  == 3 %} selected {% endif %}>Mar</option>
-
-  <option value="4"  {% if field.value|to_int  == 4 %} selected {% endif %}>Apr</option>
-
-  <option value="5"  {% if field.value|to_int  == 5 %} selected {% endif %}>May</option>
-
-  <option value="6" {% if field.value|to_int  == 6 %} selected {% endif %}>Jun</option>
-
-  <option value="7"  {% if field.value|to_int  == 7 %} selected {% endif %}>Jul</option>
-
-  <option value="8"  {% if field.value|to_int  == 8 %} selected {% endif %}>Aug</option>
-
-  <option value="9"  {% if field.value|to_int  == 9 %} selected {% endif %}>Sep</option>
-
-  <option value="10" {% if field.value|to_int  == 10 %} selected {% endif %}>Oct</option>
-
-  <option value="11" {% if field.value|to_int  == 11 %} selected {% endif %}>Nov</option>
-
-  <option value="12" {% if field.value|to_int  == 12 %} selected {% endif %}>Dec</option>
-
-</select>
-            
-
-
-            {% else %}
-            
-                {{field.label_tag}}
-                {{field}}
-            
-             {% endif %}
-            {% endfor %}
 
              <input type="submit" value="Get prediction">
        </form>
